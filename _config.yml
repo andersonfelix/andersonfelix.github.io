@@ -11,16 +11,16 @@ relative_permalinks: true
 # Setup
 title:               Anderson Felix
 tagline:             'Front-end Developer'
-description:         ''
+description:         
 url:                 http://andersonfelix.com.br
 baseurl:             /
 paginate:            5
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              Anderson Felix
+  url:               https://twitter.com/anderson_felix
+  email:             anderson.felix83@gmail.com
 
 # Custom vars
 version:             1.0.0
