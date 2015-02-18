@@ -3,32 +3,37 @@ layout: default
 title: Home
 ---
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+<article class="about">
+  <header>
+      <h1 class="page-title">Sobre</h1>    
+  </header>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-
-    {{ post.content }}
+  <div class="content">
+    <p>
+      <img src="https://lh6.googleusercontent.com/-M0NJKO8kLys/UA26LK14GDI/AAAAAAAAAJU/zwkGxkPzhDY/w140-h140-p/28698_130633103630647_7350825_n.jpg" alt="Anderson Felix" class="profile">
+      Nascido em São Paulo, Anderson Felix cursou Sistemas para Internet na Faculdade Uninove em 2007. Passou pelo <a href="http://virgula.uol.com.br/">Portal Vírgula</a> onde atuou como desenvolvedor front-end participando de uma das grandes reformas do portal, e como desenvolvedor back-end trabalhando com CMS da empresa. Participou da equipe da empresa <a href="http://www.dennova.com.br/">Dennova</a>, onde trabalhou em diversos sites, portais, ferramentas e CMS. Atualmente atua na equipe de front-end do Folha de S.Paulo, responsável principalmente sobre o desenvolvimento do Javascript do portal e seus sites parceiros:  <a href="http://f5.folha.uol.com.br">F5</a>, <a href="http://guia.folha.uol.com.br/">Guia da Folha</a>, <a href="http://classificados.folha.uol.com.br">Classificados</a>.  Foi um dos responsáveis da reforma de 2014 do Portal.
+    </p>
   </div>
-  {% endfor %}
-</div>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% endif %}
-</div>
+</article>
 
+<section>
+  <header>
+    <h3>Contatos</h3>
+  </header>
+
+  <ul class="unstyled">
+    <li>Linkedin: <a href="http://br.linkedin.com/in/andersonfelix83">meu perfil</a></li>
+    <li>Email: <a href="mailto:anderson.felix83@gmail.com">anderson.felix83@gmail.com</a></li>
+    <li>Google Plus: <a href="https://plus.google.com/+andersonfelix/">+andersonfelix</a></li>
+    <li>Twitter: <a href="https://twitter.com/anderson_felix">anderson_felix</a></li>
+  </ul>
+
+</section>
+
+<hr>
+
+<blockquote>
+  A violência é o último refúgio do incompetente.
+  <footer> — <cite>Isaac Asimov</cite></footer>
+</blockquote>
