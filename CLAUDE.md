@@ -13,6 +13,7 @@ Project context: see [CONTEXT.md](CONTEXT.md).
 ## Commands
 
 - `pnpm install` / `pnpm dev` / `pnpm build` / `pnpm preview`
+- `pnpm lint` (ESLint + Stylelint + Prettier check) / `pnpm format`
 
 ## Conventions
 
