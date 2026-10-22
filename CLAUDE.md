@@ -4,9 +4,9 @@ Project context: see [CONTEXT.md](CONTEXT.md).
 
 ## Git workflow
 
-- Before starting any work: `git checkout master && git pull`.
+- Before starting any work: `git checkout main && git pull`.
 - Always work in a worktree under `.worktrees/<branch>` on a new branch
-  from master, prefixed `feat/`, `fix/`, `refactor/`, `docs/` or `chore/`.
+  from main, prefixed `feat/`, `fix/`, `refactor/`, `docs/` or `chore/`.
 - Never commit, push, open PRs or merge. Leave changes in the worktree
   for the owner to review and commit.
 
@@ -18,4 +18,4 @@ Project context: see [CONTEXT.md](CONTEXT.md).
 ## Conventions
 
 - Site content in Portuguese (pt-BR); code, comments and docs in English.
-- Deploy: push to master → GitHub Actions (`.github/workflows/deploy.yml`).
+- Deploy: push to main → GitHub Actions (`.github/workflows/deploy.yml`).
