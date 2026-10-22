@@ -1,0 +1,96 @@
+:root {
+  --bg-color: #fffff5;
+  --text-color: #181818;
+  --transition: 0.2s ease-in;
+  --link-color: seagreen;
+  --link-hover-color: darkgreen;
+}
+
+html,
+body {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+
+  @media (width >=1024px) {
+    display: flex;
+    place-items: center;
+  }
+}
+
+a {
+  --link-border: transparent;
+  --color: var(--link-color);
+
+  border-bottom: 0.1rem solid var(--link-border);
+  color: var(--color);
+  padding: 0.25rem;
+  text-decoration: none;
+  transition: border-color var(--transition);
+
+  @media (hover: hover) {
+    &:hover {
+      --link-border: var(--link-hover-color);
+      --color: var(--link-hover-color);
+    }
+  }
+}
+
+.container {
+  margin-inline: auto;
+  margin: 0 auto;
+  max-width: 64rem;
+  padding: 2rem;
+  width: 100%;
+
+  header {
+    margin-bottom: 5rem;
+
+    h1 {
+      margin-block: 0;
+    }
+
+    p {
+      margin-bottom: 0;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+blockquote {
+  --border-color: lightskyblue;
+  --p-color: lightslategray;
+  --footer-color: steelblue;
+
+  border-left: 0.4rem solid var(--border-color);
+  margin-left: 0;
+  margin-block: 5rem;
+  padding: 1rem;
+  transition: border-left-color var(--transition);
+
+  p {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.4rem;
+    color: var(--p-color);
+    margin-bottom: 1rem;
+    margin-top: 0;
+    transition: color var(--transition);
+  }
+
+  footer {
+    color: var(--footer-color);
+    padding-left: 2rem;
+    transition: color var(--transition);
+  }
+
+  &:hover {
+    --border-color: lightcoral;
+    --p-color: dimgray;
+    --footer-color: coral;
+  }
+}
