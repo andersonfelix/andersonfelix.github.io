@@ -1,9 +1,8 @@
+@import url("modern-normalize");
+@import url("./themes.css");
+
 :root {
-  --bg-color: #fffff5;
-  --text-color: #181818;
   --transition: 0.2s ease-in;
-  --link-color: seagreen;
-  --link-hover-color: darkgreen;
 }
 
 html,
@@ -13,8 +12,8 @@ body {
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--surface);
+  color: var(--on-surface);
   min-height: 100vh;
 
   @media (width >=1024px) {
@@ -25,18 +24,16 @@ body {
 
 a {
   --link-border: transparent;
-  --color: var(--link-color);
 
   border-bottom: 0.1rem solid var(--link-border);
-  color: var(--color);
+  color: var(--link);
   padding: 0.25rem;
   text-decoration: none;
   transition: border-color var(--transition);
 
   @media (hover: hover) {
     &:hover {
-      --link-border: var(--link-hover-color);
-      --color: var(--link-hover-color);
+      --link-border: var(--link);
     }
   }
 }
@@ -53,19 +50,20 @@ a {
 
     h1 {
       margin-block: 0;
+      color: var(--primary);
     }
 
     p {
       margin-bottom: 0;
       margin-top: 0.5rem;
+      color: var(--secondary);
     }
   }
 }
 
 blockquote {
-  --border-color: lightskyblue;
-  --p-color: lightslategray;
-  --footer-color: steelblue;
+  --border-color: var(--primary);
+  --footer-color: var(--primary);
 
   border-left: 0.4rem solid var(--border-color);
   margin-left: 0;
@@ -76,10 +74,8 @@ blockquote {
   p {
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 1.4rem;
-    color: var(--p-color);
     margin-bottom: 1rem;
     margin-top: 0;
-    transition: color var(--transition);
   }
 
   footer {
@@ -89,8 +85,7 @@ blockquote {
   }
 
   &:hover {
-    --border-color: lightcoral;
-    --p-color: dimgray;
-    --footer-color: coral;
+    --border-color: var(--on-surface-variant);
+    --footer-color: var(--secondary);
   }
 }
