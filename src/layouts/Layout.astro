@@ -13,9 +13,7 @@ const siteName = "Anderson Felix";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta
       name="theme-color"
       content="#3b4f8f"
@@ -29,6 +27,7 @@ const siteName = "Anderson Felix";
     <title>{title ? `${title} · ${siteName}` : siteName}</title>
   </head>
   <body>
+    <div class="main-bg"></div>
     <div class="container">
       <slot />
     </div>
