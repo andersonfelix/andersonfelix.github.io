@@ -1,5 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import UBlockquote from "@components/UBlockquote.astro";
+
+import data from "../data/quotes.json";
+import { shuffle } from "@utils/shuffle";
+
+const quote = data?.quotes && shuffle(data.quotes).at(0);
 ---
 
 <Layout>
@@ -10,10 +16,11 @@ import Layout from "../layouts/Layout.astro";
     </header>
   </main>
 
-  <blockquote>
-    <p>Any sufficiently advanced technology is indistinguishable from magic.</p>
-    <footer>
-      — <cite>Arthur C. Clarke</cite>
-    </footer>
-  </blockquote>
+  {quote && (
+    <UBlockquote>
+      <Fragment slot="text">{quote.text}</Fragment>
+      <Fragment slot="author">{quote.author}</Fragment>
+      {quote?.origin && <Fragment slot="origin">, {quote?.origin}</Fragment>}
+    </UBlockquote>
+  )}
 </Layout>
