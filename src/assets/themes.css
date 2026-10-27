@@ -11,6 +11,9 @@
   --surface-variant: #e4e4d9;
   --on-surface-variant: #474734;
   --link: #2d6a8f;
+
+  /* Main bg */
+  --main-bg-per: 80%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,5 +27,8 @@
     --surface-variant: #353527;
     --on-surface-variant: #c7c7b2;
     --link: #74b0e4;
+
+    /* Main bg */
+    --main-bg-per: 10%;
   }
 }
