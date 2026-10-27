@@ -1,0 +1,99 @@
+---
+import UCite from "@components/UCite.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<blockquote>
+  <p>
+    <Icon name="mdi:format-quote-open" />
+    <slot name="text" />
+    <Icon name="mdi:format-quote-close" />
+  </p>
+
+  {Astro.slots.has("author") && (
+    <footer>
+      —
+      <UCite>
+        <span>
+          <strong>
+            <slot name="author" />
+          </strong>
+          <slot name="origin" />
+        </span>
+      </UCite>
+    </footer>
+  )}
+</blockquote>
+
+<style>
+  blockquote {
+    --blockquote-footer-color: var(--primary);
+    --blockquote-icon-color: var(--primary);
+    --blockquote-pseudo-bg: hsl(from var(--primary) h s l / 10%);
+
+    margin-left: 0;
+    margin-block: 5rem;
+    padding: 1rem;
+    position: relative;
+    transition: border-left-color var(--transition-ease-in);
+
+    @media (width >= 1024px) {
+      padding-inline: 3rem;
+    }
+
+    &::before,
+    &::after {
+      background: var(--blockquote-pseudo-bg);
+      content: "";
+      height: 100%;
+      inset: 0;
+      position: absolute;
+      width: 0.3rem;
+      transform: rotate(var(--blockquote-angle, 0));
+      transition:
+        background var(--transition-ease-in),
+        transform var(--transition-ease-in);
+    }
+
+    &::after {
+      inset: 0 0 auto auto;
+    }
+
+    p {
+      align-items: center;
+      display: flex;
+      column-gap: 0.5rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.4rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      white-space: pre;
+
+      [data-icon] {
+        font-size: 2rem;
+        flex: none;
+        color: var(--blockquote-icon-color);
+      }
+    }
+
+    footer {
+      color: var(--blockquote-footer-color);
+      display: flex;
+      column-gap: 0.5rem;
+      justify-content: center;
+      padding-left: 2rem;
+      transition: color var(--transition-ease-in);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        --blockquote-footer-color: var(--secondary);
+        --blockquote-icon-color: var(--secondary);
+        --blockquote-pseudo-bg: hsl(from var(--secondary) h s l / 30%);
+        --blockquote-angle: 15deg;
+        --cite-color: var(--secondary);
+      }
+    }
+  }
+</style>
