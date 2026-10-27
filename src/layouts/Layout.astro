@@ -1,5 +1,6 @@
 ---
 import "../assets/main.css";
+import { Font } from "astro:assets";
 
 interface Props {
   title?: string;
@@ -14,6 +15,8 @@ const siteName = "Anderson Felix";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
+    <Font cssVariable="--font-ibm-plex-mono" preload />
+    <Font cssVariable="--font-noto-serif" preload />
     <meta
       name="theme-color"
       content="#3b4f8f"
