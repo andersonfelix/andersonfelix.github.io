@@ -2,7 +2,7 @@
 @import url("./themes.css");
 
 :root {
-  --transition: 0.2s ease-in;
+  --transition-ease-in: 0.2s ease-in;
 }
 
 html,
@@ -15,8 +15,9 @@ body {
   background-color: var(--surface);
   color: var(--on-surface);
   min-height: 100vh;
+  position: relative;
 
-  @media (width >=1024px) {
+  @media (width >= 1024px) {
     display: flex;
     place-items: center;
   }
@@ -29,7 +30,7 @@ a {
   color: var(--link);
   padding: 0.25rem;
   text-decoration: none;
-  transition: border-color var(--transition);
+  transition: border-color var(--transition-ease-in);
 
   @media (hover: hover) {
     &:hover {
@@ -38,9 +39,25 @@ a {
   }
 }
 
+.main-bg {
+  --line: hsl(from var(--surface-variant) h s l / var(--main-bg-per));
+
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  inset: 0;
+  mask-image: radial-gradient(
+    ellipse 60% 60% at 50% 50%,
+    var(--surface) 30%,
+    transparent 70%
+  );
+  position: fixed;
+  z-index: 0;
+}
+
 .container {
   margin-inline: auto;
-  margin: 0 auto;
   max-width: 64rem;
   padding: 2rem;
   width: 100%;
@@ -58,34 +75,5 @@ a {
       margin-top: 0.5rem;
       color: var(--secondary);
     }
-  }
-}
-
-blockquote {
-  --border-color: var(--primary);
-  --footer-color: var(--primary);
-
-  border-left: 0.4rem solid var(--border-color);
-  margin-left: 0;
-  margin-block: 5rem;
-  padding: 1rem;
-  transition: border-left-color var(--transition);
-
-  p {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    margin-top: 0;
-  }
-
-  footer {
-    color: var(--footer-color);
-    padding-left: 2rem;
-    transition: color var(--transition);
-  }
-
-  &:hover {
-    --border-color: var(--on-surface-variant);
-    --footer-color: var(--secondary);
   }
 }
