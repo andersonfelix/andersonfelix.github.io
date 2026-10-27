@@ -2,12 +2,25 @@
 @import url("./themes.css");
 
 :root {
+  /* Fonts */
+  --font-mono:
+    var(--font-ibm-plex-mono), ui-monospace, menlo, monaco, consolas,
+    "Courier New", monospace;
+  --font-serif:
+    var(--font-noto-serif), cambria, cochin, georgia, times, "Times New Roman",
+    serif;
+  --font-sans-serif: sans-serif;
+  --font-main: var(--font-mono);
+  --font-paragraph: var(--font-serif);
+
+  /* Others */
   --transition-ease-in: 0.2s ease-in;
 }
 
 html,
 body {
   font-size: 20px;
+  font-family: var(--font-main);
   line-height: 1.2;
 }
 
@@ -59,11 +72,11 @@ a {
 .container {
   margin-inline: auto;
   max-width: 64rem;
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
 
   header {
-    margin-bottom: 5rem;
+    margin-bottom: 2.5rem;
 
     h1 {
       margin-block: 0;
@@ -76,4 +89,41 @@ a {
       color: var(--secondary);
     }
   }
+}
+
+/* Heading */
+h1 {
+  font-size: clamp(1.5rem, -1rem + 9vw, 3rem);
+  font-weight: 700;
+  margin-block: 0 1rem;
+}
+
+h2 {
+  font-size: clamp(1.3rem, -1rem + 8.5vw, 2.5rem);
+  font-weight: 600;
+  margin-block: 0 0.9rem;
+}
+
+h3 {
+  font-size: clamp(1.2rem, -1rem + 8vw, 2.25rem);
+  font-weight: 600;
+  margin-block: 0 0.8rem;
+}
+
+h4 {
+  font-size: clamp(1.1rem, -1rem + 7.5vw, 2rem);
+  font-weight: 600;
+  margin-block: 0 0.7rem;
+}
+
+h5 {
+  font-size: clamp(1rem, -1rem + 7vw, 1.5rem);
+  font-weight: 600;
+  margin-block: 0 0.6rem;
+}
+
+h6 {
+  font-size: clamp(0.9rem, -1rem + 6.5vw, 1rem);
+  font-weight: 600;
+  margin-block: 0 0.5rem;
 }
