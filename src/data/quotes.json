@@ -1,0 +1,54 @@
+{
+  "quotes": [
+    {
+      "author": "Arthur C. Clarke",
+      "origin": "Profiles of the Future: An Inquiry into the Limits of the Possible",
+      "text": "Any sufficiently advanced technology is indistinguishable from magic."
+    },
+    {
+      "author": "Arthur C. Clarke",
+      "origin": "2001: A Space Odyssey",
+      "text": "It was the mark of a barbarian to destroy something one could not understand."
+    },
+    {
+      "author": "Ursula K. Le Guin",
+      "origin": "The Telling",
+      "text": "Belief is the wound that knowledge heals."
+    },
+    {
+      "author": "Bram Stoker",
+      "origin": "The Jewel of Seven Stars",
+      "text": "We learn of great things by little experiences."
+    },
+    {
+      "author": "Margaret Atwood",
+      "origin": "The Handmaid's Tale",
+      "text": "Ignoring isn't the same as ignorance, you have to work at it."
+    },
+    {
+      "author": "Stephen Hawking",
+      "text": "Intelligence is the ability to adapt to change."
+    },
+    {
+      "author": "Oscar Wilde",
+      "text": "Conformity is the last refuge of the unimaginitive"
+    },
+    {
+      "author": "Aristotle",
+      "text": "Be a free thinker and don't accept everything you hear as truth.\nBe critical and evaluate what you believe in."
+    },
+    {
+      "author": "B.B. King",
+      "text": "The beautiful thing about learning is that no one can take it away from you."
+    },
+    {
+      "author": "Friedrich Nietzsche",
+      "origin": "Twilight of the Idols",
+      "text": "Without music, life would be a mistake."
+    },
+    {
+      "author": "Jean-Paul Sartre",
+      "text": "We are our choices."
+    }
+  ]
+}
