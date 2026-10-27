@@ -17,7 +17,9 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "@iconify-json/mdi": "^1.2.3",
+    "astro": "^7.4.2",
+    "astro-icon": "^1.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
