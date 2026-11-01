@@ -1,0 +1,49 @@
+---
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import UBlockquote from "@components/UBlockquote.astro";
+import type { Quote } from "../types/quote";
+
+interface Props {
+  src?: string;
+}
+
+const { src = "/quotes.json" } = Astro.props;
+
+const { quotes } = JSON.parse(await readFile(join("public", src), "utf-8")) as {
+  quotes: Quote[];
+};
+const fallback = quotes[0];
+---
+
+{fallback && (
+  <div data-quote-root>
+    <UBlockquote>
+      <span slot="text" data-quote="text">
+        {fallback.text}
+      </span>
+      <span slot="author" data-quote="author">
+        {fallback.author}
+      </span>
+      <span slot="origin" data-quote-origin hidden={!fallback.origin}>
+        , <span data-quote="origin">{fallback.origin}</span>
+      </span>
+    </UBlockquote>
+  </div>
+)}
+
+{/* prettier-ignore */}
+<script is:inline define:vars={{ quotes }}>
+const root = document.currentScript?.previousElementSibling;
+const quote = quotes[Math.floor(Math.random() * quotes.length)];
+if (root?.matches("[data-quote-root]") && quote) {
+  const set = (key, value = "") => {
+    const el = root.querySelector(`[data-quote="${key}"]`);
+    if (el) el.textContent = value;
+  };
+  set("text", quote.text);
+  set("author", quote.author);
+  set("origin", quote.origin);
+  root.querySelector("[data-quote-origin]")?.toggleAttribute("hidden", !quote.origin);
+}
+</script>
