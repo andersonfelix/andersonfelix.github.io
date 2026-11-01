@@ -1,26 +1,15 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import UBlockquote from "@components/UBlockquote.astro";
-
-import data from "../data/quotes.json";
-import { shuffle } from "@utils/shuffle";
-
-const quote = data?.quotes && shuffle(data.quotes).at(0);
+import URandomQuote from "@components/URandomQuote.astro";
 ---
 
-<Layout>
+<Layout description="Desenvolvedor Frontend Sênior">
   <main>
     <header>
       <h1>Anderson Felix</h1>
       <p>Desenvolvedor Frontend Sênior</p>
     </header>
-  </main>
 
-  {quote && (
-    <UBlockquote>
-      <Fragment slot="text">{quote.text}</Fragment>
-      <Fragment slot="author">{quote.author}</Fragment>
-      {quote?.origin && <Fragment slot="origin">, {quote?.origin}</Fragment>}
-    </UBlockquote>
-  )}
+    <URandomQuote />
+  </main>
 </Layout>
