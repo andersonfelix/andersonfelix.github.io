@@ -4,14 +4,18 @@
 :root {
   /* Fonts */
   --font-mono:
-    var(--font-ibm-plex-mono), ui-monospace, menlo, monaco, consolas,
+    var(--font-e-mono), ui-monospace, menlo, monaco, consolas,
     "Courier New", monospace;
   --font-serif:
-    var(--font-noto-serif), cambria, cochin, georgia, times, "Times New Roman",
+    var(--font-e-serif), ui-serif, cambria, cochin, georgia, times, "Times New Roman",
     serif;
   --font-sans-serif: sans-serif;
   --font-main: var(--font-mono);
   --font-paragraph: var(--font-serif);
+
+  /* Heading */
+  --heading-font-weight: 600;
+  --heading-margin-end: 1rem;
 
   /* Others */
   --transition-ease-in: 0.2s ease-in;
@@ -92,38 +96,44 @@ a {
 }
 
 /* Heading */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--heading-font-weight);
+  margin-block: var(--heading-margin-start, 0) var(--heading-margin-end)
+}
+
 h1 {
+  --heading-font-weight: 700;
+
   font-size: clamp(1.5rem, -1rem + 9vw, 3rem);
-  font-weight: 700;
-  margin-block: 0 1rem;
 }
 
 h2 {
+  --heading-margin-end: 0.9rem;
+
   font-size: clamp(1.3rem, -1rem + 8.5vw, 2.5rem);
-  font-weight: 600;
-  margin-block: 0 0.9rem;
 }
 
 h3 {
+  --heading-margin-end: 0.8rem;
+
   font-size: clamp(1.2rem, -1rem + 8vw, 2.25rem);
-  font-weight: 600;
-  margin-block: 0 0.8rem;
 }
 
 h4 {
+  --heading-margin-end: 0.7rem;
+
   font-size: clamp(1.1rem, -1rem + 7.5vw, 2rem);
-  font-weight: 600;
-  margin-block: 0 0.7rem;
 }
 
 h5 {
+  --heading-margin-end: 0.6rem;
+
   font-size: clamp(1rem, -1rem + 7vw, 1.5rem);
-  font-weight: 600;
-  margin-block: 0 0.6rem;
 }
 
 h6 {
-  font-size: clamp(0.9rem, -1rem + 6.5vw, 1rem);
-  font-weight: 600;
-  margin-block: 0 0.5rem;
+  --heading-margin-end: 0.5rem;
+
+  font-size: clamp(0.9rem, -1rem + 6vw, 1rem);
 }
