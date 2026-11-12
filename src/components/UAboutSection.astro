@@ -1,0 +1,14 @@
+---
+import { getEntry } from "astro:content";
+import USection from "@components/USection.astro";
+
+const { about } = (await getEntry("profile", "main"))!.data;
+---
+
+<USection id="sobre" title="Sobre">
+  <div class="prose">
+    {about.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </div>
+</USection>
