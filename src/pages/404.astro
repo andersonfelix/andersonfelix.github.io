@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import UPageHeader from "@components/UPageHeader.astro";
 ---
 
 <Layout
@@ -7,10 +8,7 @@ import Layout from "../layouts/Layout.astro";
   description="Infelizmente a página não foi encontrada. Volte para o início"
 >
   <main>
-    <header>
-      <h1>404</h1>
-      <p>Página não encontrada</p>
-    </header>
+    <UPageHeader title="404" subtitle="Página não encontrada" />
 
     <p>
       <a href="/">Voltar para o início</a>
