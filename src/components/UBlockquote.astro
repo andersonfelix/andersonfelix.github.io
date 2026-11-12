@@ -5,9 +5,9 @@ import { Icon } from "astro-icon/components";
 
 <blockquote>
   <p>
-    <Icon name="mdi:format-quote-open" />
+    <Icon name="mdi:format-quote-open" aria-hidden="true" />
     <slot name="text" />
-    <Icon name="mdi:format-quote-close" />
+    <Icon name="mdi:format-quote-close" aria-hidden="true" />
   </p>
 
   {Astro.slots.has("author") && (
