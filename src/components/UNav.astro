@@ -1,0 +1,168 @@
+---
+import { Icon } from "astro-icon/components";
+import UThemeToggle from "@components/UThemeToggle.astro";
+
+interface Props {
+  items: { href: string; label: string; icon: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<a class="skip-link" href="#content">
+  Pular para o conteúdo
+</a>
+
+<nav aria-label="Seções" data-nav>
+  <ul class="container">
+    {items.map(({ href, label, icon }) => (
+      <li>
+        <a href={href}>
+          <Icon name={icon} aria-hidden="true" />
+          <span class="label">{label}</span>
+        </a>
+      </li>
+    ))}
+    <li class="nav-theme">
+      <UThemeToggle />
+    </li>
+  </ul>
+</nav>
+
+{/* prettier-ignore */}
+<script is:inline>
+  const nav = document.querySelector("[data-nav]");
+  new ResizeObserver(([entry]) => {
+    document.documentElement.style.setProperty(
+      "--nav-height",
+      `${entry.borderBoxSize[0].blockSize}px`,
+    );
+  }).observe(nav);
+  const select = () => {
+    const previous = nav.querySelector("a.selected");
+    previous?.classList.remove("selected");
+    previous?.removeAttribute("aria-current");
+    const link = [...nav.querySelectorAll("a")].find(
+      (a) => a.hash === location.hash,
+    );
+    link?.classList.add("selected");
+    link?.setAttribute("aria-current", "location");
+  };
+  select();
+  window.addEventListener("hashchange", select);
+</script>
+
+<style>
+  .skip-link {
+    background-color: var(--surface);
+    left: 0.5rem;
+    position: fixed;
+    top: 0.5rem;
+    transform: translateY(-200%);
+    z-index: 100;
+
+    &:focus-visible {
+      outline: 0.1rem solid var(--link);
+      transform: none;
+    }
+  }
+
+  nav {
+    --bg-color: hsl(from var(--surface) h s calc(l - 0.5));
+
+    background-color: var(--bg-color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+
+    &::after {
+      background-color: var(--bg-color);
+      bottom: 0;
+      box-shadow: 0 0.25rem 0.25rem var(--bg-color);
+      content: "";
+      height: 0.5rem;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding-block: 0;
+
+    @media (width >= 1024px) {
+      row-gap: 1rem;
+    }
+  }
+
+  .nav-theme {
+    margin-inline-start: auto;
+
+    @media (width >= 680px) and (width <= 1000px) {
+      margin-inline-start: 0;
+    }
+  }
+
+  a {
+    --link-bg-color: hsl(from var(--primary) calc(h + 360) s l / 15%);
+
+    align-items: center;
+    border: 0;
+    border-radius: 0.3rem;
+    column-gap: 0.3rem;
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-inline: 0.3rem;
+    transition: background-color var(--transition-ease-in);
+
+    &.selected {
+      background-color: var(--link-bg-color);
+    }
+
+    &:focus,
+    &:focus-visible {
+      background-color: var(--link-bg-color);
+    }
+
+    &:focus-visible {
+      outline: 0.1rem solid var(--link);
+      outline-offset: 0.1rem;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--link-bg-color);
+      }
+    }
+
+    @media (width > 375px) {
+      padding-inline: 0.5rem;
+    }
+
+    [data-icon] {
+      font-size: 1.1rem;
+      margin-left: 0;
+
+      @media (width >= 640px) {
+        margin-left: -0.2rem;
+      }
+    }
+  }
+
+  @media (width < 640px) {
+    .label {
+      block-size: 1px;
+      clip-path: inset(50%);
+      inline-size: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+    }
+  }
+</style>
