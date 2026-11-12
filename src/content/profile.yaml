@@ -1,0 +1,31 @@
+main:
+  name: Anderson Felix
+  role: Desenvolvedor Front-end Sênior
+  tagline: >-
+    Arquitetura Front-end e Design Systems para produtos de alta audiência,
+    com mais de 18 anos construindo para a web.
+  availability: Aberto a oportunidades remotas ou híbridas em São Paulo
+  location: São Paulo, SP
+  about:
+    - >-
+      Construo interfaces que precisam aguentar escala: muita gente acessando
+      ao mesmo tempo, componentes reutilizados por diferentes times e anos de
+      evolução sem virar dívida técnica.
+    - >-
+      Meu foco é criar a base que deixa outros desenvolvedores mais rápidos e
+      consistentes: design tokens, componentes, padrões de código,
+      documentação e testes. TypeScript, Vue e Astro fazem parte do meu dia a
+      dia, e trato performance, acessibilidade e SEO como requisitos desde o
+      início, não como etapa final.
+    - >-
+      Gosto de revisar código e de ajudar outras pessoas a crescer. Ao longo
+      da carreira, acompanhei dezenas de desenvolvedores front-end com
+      mentoria e code review.
+  email: andersonfelix@mail.com
+  links:
+    - label: LinkedIn
+      href: https://www.linkedin.com/in/andersonfelix83/
+      icon: mdi:linkedin
+    - label: GitHub
+      href: https://github.com/andersonfelix
+      icon: mdi:github
