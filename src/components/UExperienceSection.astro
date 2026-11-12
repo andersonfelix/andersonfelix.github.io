@@ -1,0 +1,24 @@
+---
+import UExperience from "@components/UExperience.astro";
+import USection from "@components/USection.astro";
+import { getOrderedCollection } from "../utils/content";
+
+const experience = await getOrderedCollection("experience");
+---
+
+<USection id="trajetoria" title="Trajetória">
+  <ol>
+    {experience.map(({ data }) => (
+      <UExperience experience={data} />
+    ))}
+  </ol>
+</USection>
+
+<style>
+  ol {
+    border-left: 0.1rem dashed var(--surface-variant);
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 1rem;
+  }
+</style>
