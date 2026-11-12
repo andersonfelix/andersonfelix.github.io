@@ -1,0 +1,57 @@
+---
+interface Props {
+  as?: "li" | "dd";
+  variant?: "outline" | "soft";
+  size?: "sm" | "md" | "lg";
+}
+
+const { as: Tag = "li", variant = "outline", size = "md" } = Astro.props;
+---
+
+<Tag class:list={["tag", variant, size]}>
+  <slot />
+</Tag>
+
+<style>
+  .tag {
+    --bg-color: hsl(from var(--primary) h s l / 10%);
+    --border-color: hsl(from var(--primary) h s l / 15%);
+
+    border-radius: 0.25rem;
+    margin: 0;
+    transition:
+      background-color var(--transition-ease-in),
+      border-color var(--transition-ease-in);
+
+    @media (hover: hover) {
+      &:hover {
+        --bg-color: hsl(from var(--primary) h s l / 20%);
+        --border-color: hsl(from var(--primary) h s l / 60%);
+      }
+    }
+  }
+
+  .outline {
+    border: 0.05rem solid var(--border-color);
+  }
+
+  .soft {
+    background-color: var(--bg-color);
+    color: var(--primary);
+  }
+
+  .sm {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .md {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .lg {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.7rem;
+  }
+</style>
