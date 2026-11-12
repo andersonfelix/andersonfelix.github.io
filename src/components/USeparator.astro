@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div>
+  <slot>
+    <Icon name="fe:bolt" aria-hidden="true" />
+  </slot>
+</div>
+
+<style>
+  div {
+    --separator-color: hsl(from var(--secondary) h s l / 10%);
+    --icon-color: hsl(from var(--secondary) h s l / 30%);
+
+    column-gap: 0.5rem;
+    display: flex;
+    place-items: center;
+
+    &::before,
+    &::after {
+      background-color: var(--separator-color);
+      content: "";
+      height: 0.05rem;
+      transition: background-color var(--transition-ease-in);
+      width: 50%;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        --icon-color: var(--secondary);
+        --separator-color: hsl(from var(--secondary) h s l / 30%);
+      }
+    }
+
+    > [data-icon] {
+      color: var(--icon-color);
+      font-size: 2rem;
+      transition: color var(--transition-ease-in);
+
+      @media (width >= 800px) {
+        font-size: 2.5rem;
+      }
+    }
+  }
+</style>
