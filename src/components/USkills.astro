@@ -1,0 +1,34 @@
+---
+import USkillGroup from "@components/USkillGroup.astro";
+import { getOrderedCollection } from "../utils/content";
+
+const skills = await getOrderedCollection("skills");
+---
+
+<section id="conhecimentos" aria-labelledby="conhecimentos-title">
+  <h3 id="conhecimentos-title">Conhecimentos</h3>
+  <dl>
+    {skills.map(({ data }) => (
+      <USkillGroup group={data} />
+    ))}
+  </dl>
+</section>
+
+<style>
+  section {
+    margin-top: 1.5rem;
+    scroll-margin-top: 1rem;
+  }
+
+  h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+  }
+
+  dl {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+    margin: 0;
+  }
+</style>
