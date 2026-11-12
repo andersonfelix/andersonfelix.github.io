@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  expertise: CollectionEntry<"expertise">["data"];
+}
+
+const { title, description } = Astro.props.expertise;
+---
+
+<li>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</li>
+
+<style>
+  li {
+    --border-l-color: hsl(from var(--on-surface-variant) h s l / 40%);
+    --title-color: hsl(from var(--on-surface-variant) h s l / 80%);
+
+    background-color: var(--bg-color, transparent);
+    border-bottom: var(--border-b-width, 0.1rem) solid
+      var(--border-b-color, transparent);
+    border-left: var(--border-l-width, 0.1rem) solid var(--border-l-color);
+    padding: 0.5rem 0;
+    position: relative;
+    transition:
+      background-color var(--transition-ease-in),
+      border var(--transition-ease-in);
+
+    @media (hover: hover) {
+      &:hover {
+        --bg-color: hsl(from var(--secondary) h s l / 5%);
+        --border-l-color: hsl(from var(--on-secondary) h s l / 100%);
+        --border-l-width: 0.25rem;
+        --title-color: var(--secondary);
+      }
+    }
+
+    @media (pointer: coarse) {
+      --border-b-color: hsl(from var(--on-surface-variant) h s l / 40%);
+      --border-l-width: 0;
+      --title-color: var(--secondary);
+
+      padding-bottom: 1.5rem;
+
+      &:last-child {
+        --border-b-color: transparent;
+
+        padding-bottom: 0;
+      }
+    }
+
+    @media (width > 450px) {
+      padding-inline: 1rem;
+    }
+  }
+
+  h3 {
+    --heading-margin-end: 0.5rem;
+
+    color: var(--title-color);
+    font-size: 1.2rem;
+    transition: color var(--transition-ease-in);
+  }
+
+  p {
+    color: var(--p-color);
+    font-family: var(--font-paragraph);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>
