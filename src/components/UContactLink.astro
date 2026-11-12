@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  href: string;
+  icon: string;
+  label: string;
+  external?: boolean;
+}
+
+const { href, icon, label, external = false } = Astro.props;
+---
+
+<li>
+  {external ? (
+    <a href={href} rel="noopener me" target="_blank">
+      <Icon name={icon} aria-hidden="true" />
+      {label}
+      <span class="visually-hidden">(abre em nova aba)</span>
+    </a>
+  ) : (
+    <a href={href}>
+      <Icon name={icon} aria-hidden="true" />
+      {label}
+    </a>
+  )}
+</li>
+
+<style>
+  a {
+    align-items: center;
+    display: inline-flex;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+
+    @media (width >= 768px) {
+      font-size: 1rem;
+    }
+  }
+</style>
