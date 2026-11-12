@@ -6,9 +6,10 @@ import type { Quote } from "../types/quote";
 
 interface Props {
   src?: string;
+  lang?: HTMLElement["lang"];
 }
 
-const { src = "/quotes.json" } = Astro.props;
+const { src = "/quotes.json", lang = "pt-BR" } = Astro.props;
 
 const { quotes } = JSON.parse(await readFile(join("public", src), "utf-8")) as {
   quotes: Quote[];
@@ -17,7 +18,7 @@ const fallback = quotes[0];
 ---
 
 {fallback && (
-  <div data-quote-root>
+  <div data-quote-root {lang}>
     <UBlockquote>
       <span slot="text" data-quote="text">
         {fallback.text}
