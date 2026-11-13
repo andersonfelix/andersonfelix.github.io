@@ -1,0 +1,79 @@
+---
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<section id={id} aria-labelledby={`${id}-title`}>
+  <div class="heading">
+    <h2 id={`${id}-title`}>{title}</h2>
+    <a
+      class="anchor-link"
+      aria-label={`Link para a seção ${title}`}
+      href={`#${id}`}
+    ></a>
+  </div>
+  <slot />
+</section>
+
+<style>
+  section {
+    --section-padding: 2.5rem;
+
+    display: grid;
+    row-gap: 1rem;
+    padding-block: var(--section-padding) 0;
+    scroll-margin-top: calc(1rem - var(--section-padding));
+
+    @media (width >= 1024px) {
+      --section-padding: 4rem;
+
+      row-gap: 2rem;
+    }
+  }
+
+  .heading {
+    align-items: center;
+    display: flex;
+
+    @media (hover: hover) {
+      &:hover {
+        --link-opacity: 1;
+      }
+    }
+  }
+
+  h2 {
+    --heading-margin-end: 0;
+
+    color: var(--primary);
+  }
+
+  .anchor-link {
+    border-bottom-width: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
+    font-weight: var(--heading-font-weight);
+    opacity: var(--link-opacity, 0);
+    padding-inline: 0.5rem;
+    transition: opacity 0.2s ease-in-out;
+
+    @media (width >= 1024px) {
+      margin-inline: 0.5rem;
+    }
+
+    &::after {
+      content: "#";
+    }
+
+    &:focus-visible {
+      --link-opacity: 1;
+
+      outline: 0.1rem solid var(--link);
+      outline-offset: 0.1rem;
+    }
+  }
+</style>

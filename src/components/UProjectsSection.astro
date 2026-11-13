@@ -1,0 +1,29 @@
+---
+import UProject from "@components/UProject.astro";
+import USection from "@components/USection.astro";
+import { getOrderedCollection } from "../utils/content";
+
+const projects = await getOrderedCollection("projects");
+---
+
+<USection id="projetos" title="Projetos em destaque">
+  <div>
+    {projects.map(({ data }, index) => (
+      <UProject project={data} lead={index === 0} />
+    ))}
+  </div>
+</USection>
+
+<style>
+  div {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+
+    @media (width >= 800px) {
+      .lead {
+        grid-column: span 2;
+      }
+    }
+  }
+</style>

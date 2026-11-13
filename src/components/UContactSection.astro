@@ -1,0 +1,36 @@
+---
+import { getEntry } from "astro:content";
+import UContactLink from "@components/UContactLink.astro";
+import USection from "@components/USection.astro";
+
+const { email, links } = (await getEntry("profile", "main"))!.data;
+---
+
+<USection id="contato" title="Contato">
+  <p class="prose">Quer conversar sobre uma vaga ou projeto? Fale comigo.</p>
+  <ul>
+    <UContactLink
+      href={`mailto:${email}`}
+      icon="mdi:email-outline"
+      label={email}
+    />
+    {links.map(({ label, href, icon }) => (
+      <UContactLink {href} {icon} {label} external />
+    ))}
+  </ul>
+</USection>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+
+  .prose {
+    margin-block: 0;
+  }
+</style>

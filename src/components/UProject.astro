@@ -1,0 +1,103 @@
+---
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+import UCard from "@components/UCard.astro";
+import UTag from "@components/UTag.astro";
+import UTagList from "@components/UTagList.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">["data"];
+  lead?: boolean;
+}
+
+const { project, lead = false, ...rest } = Astro.props;
+const { title, role, period, challenge, solution, tags, url } = project;
+---
+
+<UCard as="article" class={lead ? "lead" : undefined} {...rest}>
+  <h3>{title}</h3>
+  <p class="meta">
+    <strong>{role}</strong>
+    {period && <span>{period}</span>}
+  </p>
+
+  <dl>
+    <dt>Desafio</dt>
+    <dd>{challenge}</dd>
+    <dt>O que fiz</dt>
+    <dd>{solution}</dd>
+  </dl>
+
+  <UTagList class="tags" aria-label="Tecnologias e temas">
+    {tags.map((tag) => (
+      <UTag variant="soft" size="sm">
+        {tag}
+      </UTag>
+    ))}
+  </UTagList>
+
+  {url && (
+    <a href={url} rel="noopener" target="_blank">
+      Ver projeto <Icon name="mdi:arrow-top-right" aria-hidden="true" />
+      <span class="visually-hidden">(abre em nova aba)</span>
+    </a>
+  )}
+</UCard>
+
+<style>
+  h3 {
+    --heading-margin-end: 0;
+
+    font-size: 1.4rem;
+  }
+
+  .meta {
+    color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    margin-block: -0.5rem 0;
+  }
+
+  dl {
+    font-family: var(--font-paragraph);
+    line-height: 1.5;
+    margin-block: 0;
+  }
+
+  @media (width >= 800px) {
+    .lead dl {
+      column-gap: 2rem;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+
+  dt {
+    color: var(--on-surface-variant);
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  dd {
+    margin-inline: 0;
+    margin-block: 0.25rem 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .tags {
+    margin-block: auto 0;
+  }
+
+  a {
+    align-self: flex-end;
+    font-size: 0.8rem;
+  }
+</style>
