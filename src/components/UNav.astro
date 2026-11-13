@@ -69,6 +69,7 @@ const { items } = Astro.props;
 
   nav {
     --bg-color: hsl(from var(--surface) h s calc(l - 0.5));
+    --link-bg-color: hsl(from var(--link) calc(h + 360) s l / 5%);
 
     background-color: var(--bg-color);
     position: fixed;
@@ -95,29 +96,31 @@ const { items } = Astro.props;
     list-style: none;
     padding-block: 0;
 
+    @media (width < 800px) {
+      justify-content: center;
+    }
+
     @media (width >= 1024px) {
-      row-gap: 1rem;
+      column-gap: 1rem;
     }
   }
 
   .nav-theme {
-    margin-inline-start: auto;
+    margin-inline-start: 0;
 
-    @media (width >= 680px) and (width <= 1000px) {
-      margin-inline-start: 0;
+    @media (width > 1000px) {
+      margin-inline-start: auto;
     }
   }
 
   a {
-    --link-bg-color: hsl(from var(--primary) calc(h + 360) s l / 15%);
-
     align-items: center;
     border: 0;
     border-radius: 0.3rem;
     column-gap: 0.3rem;
     display: inline-flex;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: var(--text-sm);
+    font-weight: 700;
     padding-inline: 0.3rem;
     transition: background-color var(--transition-ease-in);
 
@@ -145,17 +148,23 @@ const { items } = Astro.props;
       padding-inline: 0.5rem;
     }
 
+    @media (width < 800px) and (any-pointer: coarse) {
+      justify-content: center;
+      min-block-size: 2.2rem;
+      min-inline-size: 2.2rem;
+    }
+
     [data-icon] {
-      font-size: 1.1rem;
+      font-size: var(--text-lg);
       margin-left: 0;
 
-      @media (width >= 640px) {
+      @media (width >= 800px) {
         margin-left: -0.2rem;
       }
     }
   }
 
-  @media (width < 640px) {
+  @media (width < 800px) {
     .label {
       block-size: 1px;
       clip-path: inset(50%);
