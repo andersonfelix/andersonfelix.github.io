@@ -1,0 +1,73 @@
+- id: design-system
+  order: 1
+  title: Design System
+  role: Tech Lead
+  challenge: >-
+    Criar uma base de componentes e padrões que sustentasse a reformulação do
+    Guia Folha e pudesse crescer para outros produtos.
+  solution: >-
+    Criei o design system do zero e liderei o time responsável. A partir das
+    cores e espaçamentos definidos pela equipe de arte, construí a estrutura
+    de design tokens em Stylus que gera as variáveis CSS de cada tema e
+    projeto. Também desenvolvemos uma biblioteca com 50+ componentes em Vue
+    (Composition API, composables e VueUse), integração com APIs REST em
+    TypeScript e testes unitários com Vitest. O Guia Folha foi o primeiro
+    produto construído sobre ele.
+  tags: [Vue, TypeScript, Stylus, VueUse, Vitest, Design Tokens]
+
+- id: guide
+  order: 2
+  title: Guia Folha
+  role: Desenvolvedor Front-end responsável
+  challenge: >-
+    Substituir um site legado por uma base moderna, rápida e fácil de manter.
+  solution: >-
+    Conduzi a reformulação completa em Astro sobre o Design System, com
+    páginas e templates reutilizáveis focados em performance web,
+    acessibilidade (WCAG) e SEO.
+  tags: [Astro, Design System, TypeScript, WCAG, SEO]
+  url: https://guia.folha.uol.com.br/
+
+- id: elections
+  order: 3
+  title: Eleições
+  role: Desenvolvedor Front-end responsável
+  period: 2016 - 2024
+  challenge: >-
+    Cobertura em tempo real com grande volume de acessos concentrado nas
+    noites de apuração, quando a página não pode cair nem atrasar.
+  solution: >-
+    Desenvolvi a apuração em tempo real, o ringue (comparador de candidatos)
+    e as páginas de candidatos, priorizando leveza, atualização contínua dos dados e
+    estabilidade nos picos de acesso.
+  tags: [Tempo real, Alta audiência, Performance]
+  url: https://www1.folha.uol.com.br/poder/eleicoes/2024/
+
+- id: university-ranking
+  order: 4
+  title: Ranking Universitário Folha
+  role: Desenvolvedor Front-end responsável
+  challenge: >-
+    Apresentar um grande volume de dados sobre universidades e cursos de
+    forma navegável e comparável.
+  solution: >-
+    Desenvolvi o front-end do zero a partir do layout criado pela equipe de
+    design no Figma, com foco em clareza na leitura dos dados, acessibilidade
+    e SEO.
+  tags: [Dados, Acessibilidade, SEO]
+  url: https://ruf.folha.uol.com.br/2026/
+
+- id: portal-redesign
+  order: 5
+  title: Reformulação do portal da Folha
+  role: Desenvolvedor Front-end responsável
+  period: 2018 - 2026
+  challenge: >-
+    Redesenhar um portal de notícias de alta audiência sem interromper a
+    publicação diária.
+  solution: >-
+    Fui o desenvolvedor front-end responsável pela reformulação de 2018 e
+    pelas evoluções dos anos seguintes, componentizando as páginas e cuidando
+    da performance de um portal de alta audiência.
+  tags: [Redesign, Componentização, Performance]
+  url: https://www.folha.uol.com.br/

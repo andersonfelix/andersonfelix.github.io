@@ -18,6 +18,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@iconify-json/fe": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
     "astro": "^7.4.2",
     "astro-icon": "^1.2.0"

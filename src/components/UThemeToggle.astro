@@ -1,0 +1,108 @@
+---
+import { Icon } from "astro-icon/components";
+
+const modes = [
+  { mode: "auto", label: "sistema", icon: "mdi:theme-light-dark" },
+  { mode: "light", label: "claro", icon: "mdi:weather-sunny" },
+  { mode: "dark", label: "escuro", icon: "mdi:weather-night" },
+];
+---
+
+<button type="button" class="theme-toggle" data-theme-toggle hidden>
+  {modes.map(({ mode, label, icon }) => (
+    <span data-mode={mode} data-label={label}>
+      <Icon name={icon} aria-hidden="true" />
+    </span>
+  ))}
+</button>
+
+{/* prettier-ignore */}
+<script>
+  type Mode = "auto" | "light" | "dark";
+
+  const KEY = "theme";
+  const order: Mode[] = ["auto", "light", "dark"];
+  const root = document.documentElement;
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  )!;
+  const metas = document.querySelectorAll<HTMLMetaElement>(
+    'meta[name="theme-color"]',
+  );
+
+  const current = (): Mode => (root.dataset.theme as Mode) ?? "auto";
+
+  const apply = (mode: Mode) => {
+    if (mode === "auto") delete root.dataset.theme;
+    else root.dataset.theme = mode;
+
+    try {
+      if (mode === "auto") localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, mode);
+    } catch {
+      // Storage unavailable
+    }
+
+    const primary = getComputedStyle(root).getPropertyValue("--primary");
+    metas.forEach((meta) => {
+      meta.dataset.auto ??= meta.content;
+      meta.content = mode === "auto" ? meta.dataset.auto : primary.trim();
+    });
+
+    button.dataset.current = mode;
+    const label = button.querySelector<HTMLElement>(`[data-mode="${mode}"]`)!
+      .dataset.label;
+    button.setAttribute("aria-label", `Alternar tema (atual: ${label})`);
+    button.title = `Tema: ${label}`;
+  };
+
+  button.addEventListener("click", () => {
+    apply(order[(order.indexOf(current()) + 1) % order.length]);
+  });
+
+  apply(current());
+  button.hidden = false;
+</script>
+
+<style>
+  .theme-toggle {
+    --toggle-bg-color: hsl(from var(--primary) h s l / 15%);
+
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0.3rem;
+    color: var(--link);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1.1rem;
+    padding: 0.25rem 0.5rem;
+    transition: background-color var(--transition-ease-in);
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:focus-visible {
+      background-color: var(--toggle-bg-color);
+      outline: 0.1rem solid var(--link);
+      outline-offset: 0.1rem;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--toggle-bg-color);
+      }
+    }
+  }
+
+  span {
+    display: none;
+  }
+
+  .theme-toggle[data-current="auto"] [data-mode="auto"],
+  .theme-toggle[data-current="light"] [data-mode="light"],
+  .theme-toggle[data-current="dark"] [data-mode="dark"] {
+    display: inline-flex;
+  }
+</style>

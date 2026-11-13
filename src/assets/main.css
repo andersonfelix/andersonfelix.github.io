@@ -4,11 +4,11 @@
 :root {
   /* Fonts */
   --font-mono:
-    var(--font-e-mono), ui-monospace, menlo, monaco, consolas,
-    "Courier New", monospace;
+    var(--font-e-mono), ui-monospace, menlo, monaco, consolas, "Courier New",
+    monospace;
   --font-serif:
-    var(--font-e-serif), ui-serif, cambria, cochin, georgia, times, "Times New Roman",
-    serif;
+    var(--font-e-serif), ui-serif, cambria, cochin, georgia, times,
+    "Times New Roman", serif;
   --font-sans-serif: sans-serif;
   --font-main: var(--font-mono);
   --font-paragraph: var(--font-serif);
@@ -17,21 +17,35 @@
   --heading-font-weight: 600;
   --heading-margin-end: 1rem;
 
+  /* Nav: --nav-height is set at runtime by UNav */
+  --nav-gap: 0.5rem;
+  --nav-offset: calc(var(--nav-height, 0) + var(--nav-gap));
+
   /* Others */
   --transition-ease-in: 0.2s ease-in;
 }
 
 html,
 body {
-  font-size: 20px;
   font-family: var(--font-main);
   line-height: 1.2;
+}
+
+html {
+  font-size: 125%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height, 0);
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 body {
   background-color: var(--surface);
   color: var(--on-surface);
   min-height: 100vh;
+  padding-top: var(--nav-offset);
   position: relative;
 
   @media (width >= 1024px) {
@@ -42,16 +56,30 @@ body {
 
 a {
   --link-border: transparent;
+  --link-color: var(--link);
 
   border-bottom: 0.1rem solid var(--link-border);
-  color: var(--link);
+  color: var(--link-color);
   padding: 0.25rem;
   text-decoration: none;
-  transition: border-color var(--transition-ease-in);
+  transition:
+    border-color var(--transition-ease-in),
+    color var(--transition-ease-in);
+
+  &:focus,
+  &:focus-visible {
+    --link-color: var(--link-hover);
+    --link-border: var(--link-hover);
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
 
   @media (hover: hover) {
     &:hover {
-      --link-border: var(--link);
+      --link-color: var(--link-hover);
+      --link-border: var(--link-hover);
     }
   }
 }
@@ -76,64 +104,85 @@ a {
 .container {
   margin-inline: auto;
   max-width: 64rem;
-  padding: 1.5rem;
+  padding: 1.5rem 0.5rem;
   width: 100%;
 
-  header {
-    margin-bottom: 2.5rem;
+  @media (width > 375px) {
+    padding-inline: 1.5rem;
+  }
 
-    h1 {
-      margin-block: 0;
-      color: var(--primary);
-    }
-
-    p {
-      margin-bottom: 0;
-      margin-top: 0.5rem;
-      color: var(--secondary);
-    }
+  @media (width >= 1500px) {
+    padding-inline: 0;
   }
 }
 
+.prose {
+  font-family: var(--font-paragraph);
+  line-height: 1.6;
+  max-width: 42rem;
+
+  p {
+    margin-block: 0 1rem;
+  }
+}
+
+.visually-hidden {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
 /* Heading */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: var(--heading-font-weight);
-  margin-block: var(--heading-margin-start, 0) var(--heading-margin-end)
+  margin-block: var(--heading-margin-start, 0) var(--heading-margin-end);
 }
 
 h1 {
   --heading-font-weight: 700;
 
-  font-size: clamp(1.5rem, -1rem + 9vw, 3rem);
+  font-size: clamp(2rem, -1rem + 9vw, 3rem);
 }
 
 h2 {
   --heading-margin-end: 0.9rem;
 
-  font-size: clamp(1.3rem, -1rem + 8.5vw, 2.5rem);
+  font-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
 }
 
 h3 {
   --heading-margin-end: 0.8rem;
 
-  font-size: clamp(1.2rem, -1rem + 8vw, 2.25rem);
+  font-size: clamp(1.6rem, -1rem + 8vw, 2.25rem);
 }
 
 h4 {
   --heading-margin-end: 0.7rem;
 
-  font-size: clamp(1.1rem, -1rem + 7.5vw, 2rem);
+  font-size: clamp(1.4rem, -1rem + 7.5vw, 2rem);
 }
 
 h5 {
   --heading-margin-end: 0.6rem;
 
-  font-size: clamp(1rem, -1rem + 7vw, 1.5rem);
+  font-size: clamp(1.2rem, -1rem + 7vw, 1.5rem);
 }
 
 h6 {
   --heading-margin-end: 0.5rem;
 
-  font-size: clamp(0.9rem, -1rem + 6vw, 1rem);
+  font-size: clamp(1rem, -1rem + 6vw, 1rem);
+}
+
+::selection {
+  background-color: hsl(from var(--primary) calc(h + 180) s l / 20%);
 }

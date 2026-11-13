@@ -1,0 +1,31 @@
+- id: design-system
+  order: 1
+  title: Design System
+  description: >-
+    Criação e evolução de design systems: design tokens, biblioteca de
+    componentes, documentação e padrões de uso, como base visual e técnica
+    para que os produtos evoluam com consistência.
+
+- id: architecture
+  order: 2
+  title: Arquitetura Front-end
+  description: >-
+    Componentização, composables e organização de código pensadas para
+    reutilização e manutenção de longo prazo, com TypeScript fazendo a tipagem do
+    contrato entre a interface e as APIs REST.
+
+- id: web-quality
+  order: 3
+  title: Performance, acessibilidade e SEO
+  description: >-
+    Páginas rápidas, acessíveis (WCAG) e bem indexadas desde o primeiro
+    commit, com Astro e o mínimo de JavaScript quando o conteúdo permite,
+    acompanhando a evolução com Lighthouse.
+
+- id: leadership
+  order: 4
+  title: Liderança técnica
+  description: >-
+    Liderança de um time de 10+ desenvolvedores front-end no Design System e
+    apoio a dezenas de outros com mentoria e code review. Qualidade de código
+    garantida por padrões, testes, documentação e CI.

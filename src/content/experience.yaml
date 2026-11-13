@@ -1,0 +1,23 @@
+- id: folha
+  order: 1
+  organization: Folha de S.Paulo
+  role: Desenvolvedor Front-end Sênior
+  period: 2010 - 2026
+
+- id: dennova
+  order: 2
+  organization: DENNOVA
+  role: Desenvolvedor Front-end
+  period: 2009 - 2010
+
+- id: virgula
+  order: 3
+  organization: Virgula
+  role: Desenvolvedor Front-end & Back-end
+  period: 2007 - 2010
+
+- id: uninove
+  order: 4
+  organization: Universidade Nove de Julho
+  role: Tecnologia em Sistemas para Internet
+  period: 2007 - 2009

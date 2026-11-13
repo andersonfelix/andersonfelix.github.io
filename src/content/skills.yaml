@@ -1,0 +1,33 @@
+- id: core
+  order: 1
+  title: Principais
+  featured: true
+  items:
+    - TypeScript
+    - Vue
+    - Astro
+    - CSS
+    - Design System
+    - Acessibilidade
+    - Performance Web
+    - SEO
+
+- id: front-end
+  order: 2
+  title: Front-end
+  items: [JavaScript, React, HTML5, Sass, Stylus, Less]
+
+- id: back-end
+  order: 3
+  title: Back-end e dados
+  items: [Node.js, PHP (Laravel), PostgreSQL, MySQL, MongoDB]
+
+- id: infra
+  order: 4
+  title: Infraestrutura
+  items: [Docker, GitHub Actions, GitLab CI, Linux, Shell Script (Bash)]
+
+- id: tools
+  order: 5
+  title: Testes e ferramentas
+  items: [Vitest, Jest, Git, Figma, Lighthouse, Jira]

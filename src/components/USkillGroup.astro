@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+import UTag from "@components/UTag.astro";
+
+interface Props {
+  group: CollectionEntry<"skills">["data"];
+}
+
+const { title, featured, items } = Astro.props.group;
+---
+
+<div class:list={["group", { featured }]}>
+  <dt>{title}</dt>
+  {items.map((item) => (
+    <UTag
+      as="dd"
+      variant={featured ? "soft" : "outline"}
+      size={featured ? "lg" : "md"}
+    >
+      {item}
+    </UTag>
+  ))}
+</div>
+
+<style>
+  .group {
+    align-content: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block: 0.5rem;
+
+    @media (width >= 1400px) {
+      align-items: flex-start;
+      flex-direction: column;
+      margin-block: 0.75rem;
+    }
+  }
+
+  dt {
+    color: var(--on-surface-variant);
+    flex-basis: 100%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+
+    @media (width >= 1400px) {
+      flex-basis: auto;
+    }
+  }
+
+  .featured {
+    grid-column: 1 / -1;
+
+    @media (width >= 1400px) {
+      align-items: start;
+      flex-direction: row;
+
+      dt {
+        flex-basis: 100%;
+      }
+    }
+  }
+</style>

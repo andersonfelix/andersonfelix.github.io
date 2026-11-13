@@ -1,15 +1,70 @@
 ---
+import { getEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import URandomQuote from "@components/URandomQuote.astro";
+import UAboutSection from "@components/UAboutSection.astro";
+import UContactSection from "@components/UContactSection.astro";
+import UExperienceSection from "@components/UExperienceSection.astro";
+import UExpertiseSection from "@components/UExpertiseSection.astro";
+import UFooter from "@components/UFooter.astro";
+import UHero from "@components/UHero.astro";
+import UNav from "@components/UNav.astro";
+import UProjectsSection from "@components/UProjectsSection.astro";
+
+const profile = (await getEntry("profile", "main"))!.data;
+const core = await getEntry("skills", "core");
+
+const nav = [
+  { href: "#sobre", label: "Sobre", icon: "mdi:account" },
+  {
+    href: "#especialidades",
+    label: "Especialidades",
+    icon: "mdi:star",
+  },
+  { href: "#projetos", label: "Projetos", icon: "mdi:rocket-launch" },
+  {
+    href: "#trajetoria",
+    label: "Trajetória",
+    icon: "mdi:source-commit",
+  },
+  { href: "#contato", label: "Contato", icon: "mdi:email" },
+];
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  description: profile.tagline,
+  url: Astro.site,
+  email: `mailto:${profile.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "São Paulo",
+    addressRegion: "SP",
+    addressCountry: "BR",
+  },
+  knowsAbout: core?.data.items,
+  sameAs: profile.links.map(({ href }) => href),
+};
 ---
 
-<Layout description="Desenvolvedor Frontend Sênior">
-  <main>
-    <header>
-      <h1>Anderson Felix</h1>
-      <p>Desenvolvedor Frontend Sênior</p>
-    </header>
+<Layout description={`${profile.role}. ${profile.tagline}`}>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(person)}
+  />
+  <UNav slot="nav" items={nav} />
 
-    <URandomQuote />
+  <main id="content">
+    <UHero />
+    <UAboutSection />
+    <UExpertiseSection />
+    <UProjectsSection />
+    <UExperienceSection />
+    <UContactSection />
   </main>
+
+  <UFooter />
 </Layout>

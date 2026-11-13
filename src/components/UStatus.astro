@@ -1,0 +1,58 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"p"> & {
+  variant?: "static" | "pulse";
+};
+
+const { variant = "static", class: className, ...rest } = Astro.props;
+---
+
+<p class:list={["status", variant, className]} {...rest}>
+  <span class="dot" aria-hidden="true"></span>
+  <slot />
+</p>
+
+<style>
+  .status {
+    --status-color: var(--secondary);
+
+    color: var(--on-surface-variant);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .dot {
+    background-color: var(--status-color);
+    border-radius: 50%;
+    display: inline-block;
+    height: 0.5rem;
+    margin-inline-end: 0.5rem;
+    position: relative;
+    vertical-align: 0.05rem;
+    width: 0.5rem;
+  }
+
+  .pulse .dot::after {
+    animation: status-pulse 1.6s ease-out infinite;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 var(--status-color);
+    content: "";
+    inset: 0;
+    position: absolute;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  @keyframes status-pulse {
+    from {
+      box-shadow: 0 0 0 0 hsl(from var(--status-color) h s l / 70%);
+    }
+
+    to {
+      box-shadow: 0 0 0 0.5rem hsl(from var(--status-color) h s l / 0%);
+    }
+  }
+</style>
