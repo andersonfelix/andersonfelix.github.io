@@ -13,7 +13,15 @@
   --font-main: var(--font-mono);
   --font-paragraph: var(--font-serif);
 
+  /* Type scale: use these instead of ad hoc sizes */
+  --text-xs: 0.7rem;
+  --text-sm: 0.8rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.5rem;
+
   /* Heading */
+  --h2-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
   --heading-font-weight: 600;
   --heading-margin-end: 1rem;
 
@@ -108,7 +116,7 @@ a {
   width: 100%;
 
   @media (width > 375px) {
-    padding-inline: 1.5rem;
+    padding-inline: 1.25rem;
   }
 
   @media (width >= 1500px) {
@@ -119,7 +127,7 @@ a {
 .prose {
   font-family: var(--font-paragraph);
   line-height: 1.6;
-  max-width: 42rem;
+  max-width: 36rem;
 
   p {
     margin-block: 0 1rem;
@@ -156,13 +164,13 @@ h1 {
 h2 {
   --heading-margin-end: 0.9rem;
 
-  font-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
+  font-size: var(--h2-size);
 }
 
 h3 {
   --heading-margin-end: 0.8rem;
 
-  font-size: clamp(1.6rem, -1rem + 8vw, 2.25rem);
+  font-size: var(--text-xl);
 }
 
 h4 {
@@ -180,7 +188,7 @@ h5 {
 h6 {
   --heading-margin-end: 0.5rem;
 
-  font-size: clamp(1rem, -1rem + 6vw, 1rem);
+  font-size: var(--text-md);
 }
 
 ::selection {
