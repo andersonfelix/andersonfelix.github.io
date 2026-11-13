@@ -19,7 +19,7 @@ export default defineConfig({
     },
     {
       provider: fontProviders.google(),
-      name: "Fraunces",
+      name: "Besley",
       cssVariable: "--font-e-serif",
       weights: [400, 600, 700],
       styles: ["normal"],
