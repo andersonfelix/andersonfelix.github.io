@@ -15,7 +15,7 @@ const { title, featured, items } = Astro.props.group;
     <UTag
       as="dd"
       variant={featured ? "soft" : "outline"}
-      size={featured ? "lg" : "md"}
+      size={featured ? "md" : "sm"}
     >
       {item}
     </UTag>
@@ -40,8 +40,8 @@ const { title, featured, items } = Astro.props.group;
   dt {
     color: var(--on-surface-variant);
     flex-basis: 100%;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: var(--text-xs);
+    font-weight: 700;
     margin-bottom: 0.25rem;
 
     @media (width >= 1400px) {
