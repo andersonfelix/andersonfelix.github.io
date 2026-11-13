@@ -30,11 +30,11 @@ const { href, icon, label, external = false } = Astro.props;
   a {
     align-items: center;
     display: inline-flex;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     gap: 0.5rem;
 
     @media (width >= 768px) {
-      font-size: 1rem;
+      font-size: var(--text-md);
     }
   }
 </style>

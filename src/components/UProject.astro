@@ -47,8 +47,6 @@ const { title, role, period, challenge, solution, tags, url } = project;
 <style>
   h3 {
     --heading-margin-end: 0;
-
-    font-size: 1.4rem;
   }
 
   .meta {
@@ -56,14 +54,14 @@ const { title, role, period, challenge, solution, tags, url } = project;
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     margin-block: -0.5rem 0;
   }
 
   dl {
     font-family: var(--font-paragraph);
     line-height: 1.5;
-    margin-block: 0;
+    margin-block: 0 1rem;
   }
 
   @media (width >= 800px) {
@@ -79,8 +77,8 @@ const { title, role, period, challenge, solution, tags, url } = project;
   dt {
     color: var(--on-surface-variant);
     font-family: var(--font-main);
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: var(--text-xs);
+    font-weight: 700;
   }
 
   dd {
@@ -98,6 +96,6 @@ const { title, role, period, challenge, solution, tags, url } = project;
 
   a {
     align-self: flex-end;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
   }
 </style>
