@@ -55,7 +55,7 @@ const { id, title } = Astro.props;
   .anchor-link {
     border-bottom-width: 0;
     font-family: var(--font-serif);
-    font-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
+    font-size: var(--h2-size);
     font-weight: var(--heading-font-weight);
     opacity: var(--link-opacity, 0);
     padding-inline: 0.5rem;
@@ -63,6 +63,10 @@ const { id, title } = Astro.props;
 
     @media (width >= 1024px) {
       margin-inline: 0.5rem;
+    }
+
+    @media (hover: none) {
+      display: none;
     }
 
     &::after {
