@@ -27,18 +27,18 @@ const ogImage = await getImage({ src: photo, width: 600, format: "jpeg" });
     <Font cssVariable="--font-e-serif" preload />
     <meta
       name="theme-color"
-      content="#3b4f8f"
+      content="#f5f6f3"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#a6baff"
+      content="#111110"
       media="(prefers-color-scheme: dark)"
     />
     <script is:inline>
       try {
         const theme = localStorage.getItem("theme");
-        if (theme === "light" || theme === "dark") {
+        if (["light", "dark", "neobrutalism"].includes(theme)) {
           document.documentElement.dataset.theme = theme;
         }
       } catch {
