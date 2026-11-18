@@ -14,31 +14,42 @@ const { as: Tag = "li", variant = "outline", size = "md" } = Astro.props;
 
 <style>
   .tag {
-    --bg-color: hsl(from var(--primary) h s l / 10%);
-    --border-color: hsl(from var(--primary) h s l / 15%);
+    --_bg: hsl(from var(--primary) h s l / 10%);
+    --_outline: var(--tag-outline, hsl(from var(--primary) h s l / 15%));
+    --_color: var(--primary);
+    --_shadow-offset: var(--shadow-offset-sm-hover);
+    --_shadow-color: var(--shadow-hover);
 
-    border-radius: 0.25rem;
+    border-radius: var(--corner-extra-small);
+    box-shadow: var(--_shadow-offset) var(--_shadow-color);
     margin: 0;
     padding: 0.3em 0.6em;
     transition:
-      background-color var(--transition-ease-in),
-      border-color var(--transition-ease-in);
+      background-color var(--transition),
+      border-color var(--transition),
+      box-shadow var(--transition);
 
     @media (hover: hover) {
       &:hover {
-        --bg-color: hsl(from var(--primary) h s l / 20%);
-        --border-color: hsl(from var(--primary) h s l / 60%);
+        --_bg: hsl(from var(--tag-color-hover, var(--primary)) h s l / 20%);
+        --_outline: var(
+          --tag-outline-hover,
+          hsl(from var(--primary) h s l / 60%)
+        );
+        --_color: var(--tag-color-hover, var(--primary));
+        --_shadow-offset: var(--shadow-offset-sm);
+        --_shadow-color: var(--shadow);
       }
     }
   }
 
   .outline {
-    border: 0.05rem solid var(--border-color);
+    border: var(--outline-width-sm) solid var(--_outline);
   }
 
   .soft {
-    background-color: var(--bg-color);
-    color: var(--primary);
+    background-color: var(--_bg);
+    color: var(--_color);
   }
 
   .sm {

@@ -44,9 +44,20 @@ const { name, role, tagline, availability } = (await getEntry(
   }
 
   img {
-    border-radius: 0.75rem;
+    --_shadow-offset: var(--hero-photo-shadow-offset);
+
+    border: var(--hero-photo-outline-width) solid var(--hero-photo-outline);
+    border-radius: var(--corner-large);
+    box-shadow: var(--_shadow-offset) var(--hero-photo-shadow);
     height: auto;
     max-width: 160px;
+    transition: box-shadow var(--transition);
+
+    @media (hover: hover) {
+      &:hover {
+        --_shadow-offset: var(--hero-photo-shadow-offset-hover);
+      }
+    }
   }
 
   h1 {
@@ -64,11 +75,11 @@ const { name, role, tagline, availability } = (await getEntry(
 
   .tagline {
     color: var(--on-surface);
-    font-family: var(--font-paragraph);
+    font-family: var(--font-prose);
     font-size: var(--text-lg);
     line-height: 1.4;
     margin-inline: auto;
-    max-width: 40rem;
+    max-width: var(--hero-tagline-max-width, 40rem);
 
     @media (width >= 768px) {
       margin-inline: 0;

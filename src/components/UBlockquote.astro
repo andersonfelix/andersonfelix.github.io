@@ -27,15 +27,15 @@ import { Icon } from "astro-icon/components";
 
 <style>
   blockquote {
-    --blockquote-footer-color: var(--primary);
-    --blockquote-icon-color: var(--primary);
-    --blockquote-pseudo-bg: hsl(from var(--primary) h s l / 10%);
+    --_accent: var(--primary);
+    --_line-color: hsl(from var(--primary) h s l / 10%);
+    --_angle: 0;
 
     margin-left: 0;
     margin-block: 2.5rem;
     padding: 1rem;
     position: relative;
-    transition: border-left-color var(--transition-ease-in);
+    transition: border-left-color var(--transition);
     width: 100%;
 
     @media (width >= 1024px) {
@@ -44,16 +44,16 @@ import { Icon } from "astro-icon/components";
 
       &::before,
       &::after {
-        background: var(--blockquote-pseudo-bg);
+        background: var(--_line-color);
         content: "";
         height: 100%;
         inset: 0;
         position: absolute;
-        width: 0.1rem;
-        transform: rotate(var(--blockquote-angle, 0));
+        width: var(--blockquote-line-width, 0.1rem);
+        transform: rotate(var(--_angle));
         transition:
-          background var(--transition-ease-in),
-          transform var(--transition-ease-in);
+          background var(--transition),
+          transform var(--transition);
       }
 
       &::after {
@@ -65,14 +65,14 @@ import { Icon } from "astro-icon/components";
       align-items: center;
       column-gap: 0.5rem;
       display: flex;
-      font-family: var(--font-paragraph);
+      font-family: var(--font-prose);
       font-size: clamp(1.1rem, -1rem + 9vw, 1.4rem);
       justify-content: center;
       margin-bottom: 1rem;
       margin-top: 0;
 
       [data-icon] {
-        color: var(--blockquote-icon-color);
+        color: var(--_accent);
         display: none;
         font-size: 2rem;
 
@@ -83,19 +83,18 @@ import { Icon } from "astro-icon/components";
     }
 
     footer {
-      color: var(--blockquote-footer-color);
+      color: var(--_accent);
       display: flex;
       column-gap: 0.5rem;
       justify-content: center;
-      transition: color var(--transition-ease-in);
+      transition: color var(--transition);
     }
 
     @media (hover: hover) {
       &:hover {
-        --blockquote-footer-color: var(--secondary);
-        --blockquote-icon-color: var(--secondary);
-        --blockquote-pseudo-bg: hsl(from var(--secondary) h s l / 30%);
-        --blockquote-angle: 15deg;
+        --_accent: var(--secondary);
+        --_line-color: hsl(from var(--secondary) h s l / 30%);
+        --_angle: 15deg;
         --cite-color: var(--secondary);
       }
     }

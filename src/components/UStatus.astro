@@ -15,7 +15,7 @@ const { variant = "static", class: className, ...rest } = Astro.props;
 
 <style>
   .status {
-    --status-color: var(--secondary);
+    --_color: var(--status-color, var(--secondary));
 
     color: var(--on-surface-variant);
     font-size: var(--text-sm);
@@ -23,8 +23,8 @@ const { variant = "static", class: className, ...rest } = Astro.props;
   }
 
   .dot {
-    background-color: var(--status-color);
-    border-radius: 50%;
+    background-color: var(--_color);
+    border-radius: var(--status-dot-corner, 50%);
     display: inline-block;
     height: 0.5rem;
     margin-inline-end: 0.5rem;
@@ -36,7 +36,7 @@ const { variant = "static", class: className, ...rest } = Astro.props;
   .pulse .dot::after {
     animation: status-pulse 1.6s ease-out infinite;
     border-radius: inherit;
-    box-shadow: 0 0 0 0 var(--status-color);
+    box-shadow: 0 0 0 0 var(--_color);
     content: "";
     inset: 0;
     position: absolute;
@@ -48,11 +48,11 @@ const { variant = "static", class: className, ...rest } = Astro.props;
 
   @keyframes status-pulse {
     from {
-      box-shadow: 0 0 0 0 hsl(from var(--status-color) h s l / 70%);
+      box-shadow: 0 0 0 0 hsl(from var(--_color) h s l / 70%);
     }
 
     to {
-      box-shadow: 0 0 0 0.5rem hsl(from var(--status-color) h s l / 0%);
+      box-shadow: 0 0 0 0.5rem hsl(from var(--_color) h s l / 0%);
     }
   }
 </style>

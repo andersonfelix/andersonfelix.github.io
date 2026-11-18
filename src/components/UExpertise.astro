@@ -15,32 +15,35 @@ const { title, description } = Astro.props.expertise;
 
 <style>
   li {
-    --border-l-color: hsl(from var(--on-surface-variant) h s l / 40%);
-    --title-color: hsl(from var(--primary) h s l / 90%);
+    --_bg: transparent;
+    --_outline: hsl(
+      from var(--expertise-outline, var(--on-surface-variant)) h s l / 40%
+    );
+    --_outline-width: 0.1rem;
+    --_title-color: hsl(from var(--primary) h s l / 90%);
 
-    background-color: var(--bg-color, transparent);
-    border-left: var(--border-l-width, 0.1rem) solid var(--border-l-color);
+    background-color: var(--_bg);
+    border-left: var(--_outline-width) solid var(--_outline);
     padding: 0.5rem 0;
     position: relative;
     transition:
-      background-color var(--transition-ease-in),
-      border var(--transition-ease-in);
+      background-color var(--transition),
+      border var(--transition);
 
     @media (hover: hover) {
       &:hover {
-        --bg-color: hsl(from var(--secondary) h s l / 5%);
-        --border-l-color: hsl(from var(--on-secondary) h s l / 100%);
-        --border-l-width: 0.25rem;
-        --title-color: var(--secondary);
+        --_bg: hsl(from var(--secondary) h s l / 5%);
+        --_outline: var(--expertise-outline-hover, var(--on-secondary));
+        --_outline-width: 0.25rem;
+        --_title-color: var(--secondary);
       }
     }
 
     @media (hover: none) {
-      --border-l-width: 0;
-      --title-color: var(--secondary);
+      --_outline-width: 0;
+      --_title-color: var(--secondary);
 
-      border-bottom: var(--border-b-width, 0.1rem) solid
-        hsl(from var(--on-surface-variant) h s l / 40%);
+      border-bottom: 0.1rem solid var(--_outline);
       padding-bottom: 1.5rem;
 
       &:last-child {
@@ -57,14 +60,13 @@ const { title, description } = Astro.props.expertise;
   h3 {
     --heading-margin-end: 0.5rem;
 
-    color: var(--title-color);
+    color: var(--_title-color);
     font-size: var(--text-lg);
-    transition: color var(--transition-ease-in);
+    transition: color var(--transition);
   }
 
   p {
-    color: var(--p-color);
-    font-family: var(--font-paragraph);
+    font-family: var(--font-prose);
     line-height: 1.5;
     margin: 0;
   }
