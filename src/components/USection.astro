@@ -21,15 +21,15 @@ const { id, title } = Astro.props;
 
 <style>
   section {
-    --section-padding: 2.5rem;
+    --_padding: 2.5rem;
 
     display: grid;
     row-gap: 1rem;
-    padding-block: var(--section-padding) 0;
-    scroll-margin-top: calc(1rem - var(--section-padding));
+    padding-block: var(--_padding) 0;
+    scroll-margin-top: calc(1rem - var(--_padding));
 
     @media (width >= 1024px) {
-      --section-padding: 4rem;
+      --_padding: 4rem;
 
       row-gap: 2rem;
     }
@@ -41,7 +41,7 @@ const { id, title } = Astro.props;
 
     @media (hover: hover) {
       &:hover {
-        --link-opacity: 1;
+        --_anchor-opacity: 1;
       }
     }
   }
@@ -54,10 +54,10 @@ const { id, title } = Astro.props;
 
   .anchor-link {
     border-bottom-width: 0;
-    font-family: var(--font-serif);
-    font-size: var(--h2-size);
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
     font-weight: var(--heading-font-weight);
-    opacity: var(--link-opacity, 0);
+    opacity: var(--_anchor-opacity, 0);
     padding-inline: 0.5rem;
     transition: opacity 0.2s ease-in-out;
 
@@ -74,9 +74,9 @@ const { id, title } = Astro.props;
     }
 
     &:focus-visible {
-      --link-opacity: 1;
+      --_anchor-opacity: 1;
 
-      outline: 0.1rem solid var(--link);
+      outline: 0.1rem solid var(--focus-ring);
       outline-offset: 0.1rem;
     }
   }

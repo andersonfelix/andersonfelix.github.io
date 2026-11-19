@@ -10,8 +10,8 @@ import { Icon } from "astro-icon/components";
 
 <style>
   div {
-    --separator-color: hsl(from var(--secondary) h s l / 10%);
-    --icon-color: hsl(from var(--secondary) h s l / 30%);
+    --_line-color: hsl(from var(--secondary) h s l / 10%);
+    --_icon-color: hsl(from var(--secondary) h s l / 30%);
 
     column-gap: 0.5rem;
     display: flex;
@@ -19,24 +19,24 @@ import { Icon } from "astro-icon/components";
 
     &::before,
     &::after {
-      background-color: var(--separator-color);
+      background-color: var(--_line-color);
       content: "";
-      height: 0.05rem;
-      transition: background-color var(--transition-ease-in);
+      height: var(--outline-width);
+      transition: background-color var(--transition);
       width: 50%;
     }
 
     @media (hover: hover) {
       &:hover {
-        --icon-color: var(--secondary);
-        --separator-color: hsl(from var(--secondary) h s l / 30%);
+        --_icon-color: var(--secondary);
+        --_line-color: hsl(from var(--secondary) h s l / 30%);
       }
     }
 
     > [data-icon] {
-      color: var(--icon-color);
+      color: var(--_icon-color);
       font-size: 2rem;
-      transition: color var(--transition-ease-in);
+      transition: color var(--transition);
 
       @media (width >= 800px) {
         font-size: 2.5rem;

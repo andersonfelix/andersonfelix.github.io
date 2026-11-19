@@ -1,4 +1,49 @@
 :root {
+  /* Derived colors */
+  --outline: hsl(from var(--primary) h s l / 5%);
+  --outline-hover: hsl(from var(--primary) h s l / 10%);
+  --shadow: transparent;
+  --shadow-hover: transparent;
+  --surface-container: var(--surface);
+  --link-container: hsl(from var(--link) calc(h + 360) s l / 5%);
+  --link-outline: transparent;
+  --focus-ring: var(--link);
+
+  /* Shape */
+  --corner-extra-small: 0.25rem;
+  --corner-small: 0.3rem;
+  --corner-large: 0.75rem;
+  --corner-extra-large: 1rem;
+
+  /* Border */
+  --outline-width: 0.05rem;
+  --outline-width-sm: 0.05rem;
+  --link-outline-width: 0;
+
+  /* Shadow: flat unless a theme sets hard shadows */
+  --shadow-offset: 0 0 0;
+  --shadow-offset-hover: 0 0 0;
+  --shadow-offset-sm: 0 0 0;
+  --shadow-offset-sm-hover: 0 0 0;
+
+  /* Motion */
+  --lift: none;
+
+  /* Page grid: lines faded from the center */
+  --grid-line: hsl(
+    from var(--surface-variant) h s l / var(--grid-line-opacity)
+  );
+  --grid-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  --grid-size: 32px 32px;
+  --grid-mask: radial-gradient(
+    ellipse 60% 60% at 50% 50%,
+    var(--surface) 30%,
+    transparent 70%
+  );
+
+  /* Light: the default theme */
   color-scheme: light;
 
   --primary: #3b4f8f;
@@ -12,17 +57,22 @@
   --link: #1f6f68;
   --link-hover: #175a54;
 
-  /* Main bg */
-  --main-bg-per: 50%;
+  /* Page grid and card gradient */
+  --grid-line-opacity: 50%;
+  --card-gradient-edge: #f5f6f3;
+  --card-gradient-edge-hover: #f1f3f6;
+  --card-gradient-center: #f1f3f6;
+  --card-gradient-center-hover: #ebeef2;
 
-  /* Card gradient */
-  --card-bg-edge: #f5f6f3;
-  --card-bg-edge-hover: #f1f3f6;
-  --card-bg-center: #f1f3f6;
-  --card-bg-center-hover: #ebeef2;
+  /* Hero photo */
+  --hero-photo-outline-width: 5px;
+  --hero-photo-outline: var(--on-secondary);
+  --hero-photo-shadow: var(--secondary);
+  --hero-photo-shadow-offset: 7px 7px 0;
+  --hero-photo-shadow-offset-hover: 9px 9px 0;
 }
 
-/* Keep both dark blocks in sync */
+/* Dark: keep both dark blocks in sync */
 :root[data-theme="dark"] {
   color-scheme: dark;
 
@@ -36,16 +86,19 @@
   --on-surface-variant: #c7c7b2;
   --link: #6fd3c8;
   --link-hover: hsl(from var(--link) h s l / 80%);
-  --main-bg-per: 10%;
-  --card-bg-edge: #111110;
-  --card-bg-edge-hover: #121312;
-  --card-bg-center: #121312;
-  --card-bg-center-hover: #151617;
+  --grid-line-opacity: 10%;
+  --card-gradient-edge: #111110;
+  --card-gradient-edge-hover: #121312;
+  --card-gradient-center: #121312;
+  --card-gradient-center-hover: #151617;
+  --hero-photo-outline: var(--on-surface-variant);
+  --hero-photo-shadow: var(--surface-variant);
 }
 
 /*
- * `light-dark()` is avoided on purpose: using it as the origin of relative 
- * colors (`hsl(from var(--primary) …)`) is not reliably supported yet.
+ * Dark via auto. `light-dark()` is avoided on purpose: using it as the origin
+ * of relative colors (`hsl(from var(--primary) …)`) is not reliably
+ * supported yet.
  */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -61,10 +114,138 @@
     --on-surface-variant: #c7c7b2;
     --link: #6fd3c8;
     --link-hover: hsl(from var(--link) h s l / 80%);
-    --main-bg-per: 10%;
-    --card-bg-edge: #111110;
-    --card-bg-edge-hover: #121312;
-    --card-bg-center: #121312;
-    --card-bg-center-hover: #151617;
+    --grid-line-opacity: 10%;
+    --card-gradient-edge: #111110;
+    --card-gradient-edge-hover: #121312;
+    --card-gradient-center: #121312;
+    --card-gradient-center-hover: #151617;
+    --hero-photo-outline: var(--on-surface-variant);
+    --hero-photo-shadow: var(--surface-variant);
   }
+}
+
+/* Neobrutalism: dark-only */
+:root[data-theme="neobrutalism"] {
+  color-scheme: dark;
+
+  /* Colors */
+  --primary: #00bbf9;
+  --on-primary: #090909;
+  --secondary: #e73f99;
+  --on-secondary: #1f0412;
+  --tertiary: #8584c8;
+  --on-tertiary: #14133a;
+  --surface: #090909;
+  --on-surface: #f2f2f4;
+  --surface-variant: #1d1d1d;
+  --on-surface-variant: #b4b4be;
+  --surface-container: #13131b;
+  --outline: var(--tertiary);
+  --outline-hover: var(--primary);
+  --shadow: hsl(from var(--tertiary) h s calc(l - 30));
+  --shadow-hover: hsl(from var(--primary) h s calc(l - 15));
+  --link: #f2c14e;
+  --link-hover: #f6d483;
+  --link-container: hsl(from var(--tertiary) h s l / 15%);
+  --link-outline: hsl(from var(--link) h s l / 30%);
+  --focus-ring: var(--link-hover);
+  --grid-line-opacity: 10%;
+
+  /* Typography: mono only */
+  --font-heading: var(--font-mono);
+  --font-prose: var(--font-mono);
+
+  /* Shape */
+  --corner-extra-small: 0;
+  --corner-small: 0;
+  --corner-large: 0;
+  --corner-extra-large: 0;
+
+  /* Border */
+  --outline-width: 3px;
+  --outline-width-sm: 2px;
+  --link-outline-width: var(--outline-width-sm);
+
+  /* Shadow */
+  --shadow-offset: 6px 6px 0;
+  --shadow-offset-hover: 8px 8px 0;
+  --shadow-offset-sm: 3px 3px 0;
+  --shadow-offset-sm-hover: 4px 4px 0;
+
+  /* Motion */
+  --lift: -2px -2px;
+
+  /* Page grid */
+  --grid-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      var(--grid-line) 19px,
+      var(--grid-line) 20px,
+      transparent 20px,
+      transparent 39px,
+      var(--grid-line) 39px,
+      var(--grid-line) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      var(--grid-line) 19px,
+      var(--grid-line) 20px,
+      transparent 20px,
+      transparent 39px,
+      var(--grid-line) 39px,
+      var(--grid-line) 40px
+    ),
+    radial-gradient(circle at 20px 20px, var(--grid-line) 2px, transparent 2px),
+    radial-gradient(circle at 40px 40px, var(--grid-line) 2px, transparent 2px);
+  --grid-size: 40px 40px;
+  --grid-mask: radial-gradient(
+    ellipse 100% 100% at 100% 100%,
+    var(--surface) 50%,
+    transparent 90%
+  );
+
+  @media (prefers-reduced-motion: reduce) {
+    --lift: none;
+  }
+
+  /* Component APIs */
+  --blockquote-line-width: var(--outline-width);
+  --card-gradient-edge: #0a0a0b;
+  --card-gradient-edge-hover: #0a0a0b;
+  --card-gradient-center: #0a0a0b;
+  --card-gradient-center-hover: #0a0a0b;
+  --card-outline: hsl(from var(--tertiary) h s calc(l - 40));
+  --card-outline-hover: var(--tertiary);
+  --card-shadow: hsl(from var(--tertiary) h s calc(l - 40));
+  --card-shadow-hover: var(--tertiary);
+  --contact-link-container: var(--surface-container);
+  --contact-link-outline: var(--outline);
+  --contact-link-outline-hover: var(--outline-hover);
+  --contact-link-outline-width: var(--outline-width-sm);
+  --contact-link-padding: 0.4rem 0.75rem;
+  --experience-dot-corner: 0;
+  --experience-dot-ring-offset: 0.3rem;
+  --experience-dot-rotate: 45deg;
+  --experience-dot-size: 0.6rem;
+  --expertise-outline: var(--secondary);
+  --expertise-outline-hover: var(--secondary);
+  --hero-photo-outline: var(--secondary);
+  --hero-photo-outline-width: var(--outline-width);
+  --hero-photo-shadow: var(--shadow);
+  --hero-photo-shadow-offset: var(--shadow-offset);
+  --hero-photo-shadow-offset-hover: var(--shadow-offset-hover);
+  --hero-tagline-max-width: 43rem; /* mono is wider */
+  --nav-shadow: hsl(from var(--surface-variant) h s calc(l - 4));
+  --nav-shadow-offset: 0 0.05rem 0;
+  --prose-max-width: 38.5rem; /* mono is wider */
+  --projects-gap: 2rem 1.3rem;
+  --status-color: var(--link);
+  --status-dot-corner: 10%;
+  --tag-outline: var(--outline-hover);
+  --tag-outline-hover: var(--outline);
+  --tag-color-hover: var(--tertiary);
 }

@@ -27,11 +27,54 @@ const { href, icon, label, external = false } = Astro.props;
 </li>
 
 <style>
+  /* Light/dark: underline only, colored by the global `a` rule's state */
   a {
+    --_outline: var(
+      --contact-link-outline,
+      transparent transparent var(--_underline)
+    );
+    --_shadow-offset: var(--shadow-offset-sm);
+    --_shadow-color: var(--shadow);
+
     align-items: center;
+    background: var(--contact-link-container, transparent);
+    border-color: var(--_outline);
+    border-style: solid;
+    border-width: var(--contact-link-outline-width, 0 0 0.1rem);
+    box-shadow: var(--_shadow-offset) var(--_shadow-color);
     display: inline-flex;
     font-size: var(--text-sm);
     gap: 0.5rem;
+    padding: var(--contact-link-padding, 0.25rem);
+    transition:
+      border-color var(--transition),
+      color var(--transition),
+      box-shadow var(--transition),
+      translate var(--transition);
+
+    &:focus-visible {
+      --_outline: var(
+        --contact-link-outline-hover,
+        transparent transparent var(--_underline)
+      );
+      --_shadow-offset: var(--shadow-offset-sm-hover);
+      --_shadow-color: var(--shadow-hover);
+
+      translate: var(--lift);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        --_outline: var(
+          --contact-link-outline-hover,
+          transparent transparent var(--_underline)
+        );
+        --_shadow-offset: var(--shadow-offset-sm-hover);
+        --_shadow-color: var(--shadow-hover);
+
+        translate: var(--lift);
+      }
+    }
 
     @media (width >= 768px) {
       font-size: var(--text-md);

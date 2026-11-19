@@ -5,6 +5,7 @@ const modes = [
   { mode: "auto", label: "sistema", icon: "mdi:theme-light-dark" },
   { mode: "light", label: "claro", icon: "mdi:weather-sunny" },
   { mode: "dark", label: "escuro", icon: "mdi:weather-night" },
+  { mode: "neobrutalism", label: "neobrutalista", icon: "mdi:cube-outline" },
 ];
 ---
 
@@ -18,10 +19,10 @@ const modes = [
 
 {/* prettier-ignore */}
 <script>
-  type Mode = "auto" | "light" | "dark";
+  type Mode = "auto" | "light" | "dark" | "neobrutalism";
 
   const KEY = "theme";
-  const order: Mode[] = ["auto", "light", "dark"];
+  const order: Mode[] = ["auto", "light", "dark", "neobrutalism"];
   const root = document.documentElement;
   const button = document.querySelector<HTMLButtonElement>(
     "[data-theme-toggle]",
@@ -43,10 +44,10 @@ const modes = [
       // Storage unavailable
     }
 
-    const primary = getComputedStyle(root).getPropertyValue("--primary");
+    const surface = getComputedStyle(root).getPropertyValue("--surface");
     metas.forEach((meta) => {
       meta.dataset.auto ??= meta.content;
-      meta.content = mode === "auto" ? meta.dataset.auto : primary.trim();
+      meta.content = mode === "auto" ? meta.dataset.auto : surface.trim();
     });
 
     button.dataset.current = mode;
@@ -66,18 +67,20 @@ const modes = [
 
 <style>
   .theme-toggle {
-    --toggle-bg-color: var(--link-bg-color);
+    --_outline: transparent;
 
     align-items: center;
     background: transparent;
-    border: 0;
-    border-radius: 0.3rem;
+    border: var(--link-outline-width) solid var(--_outline);
+    border-radius: var(--corner-small);
     color: var(--link);
     cursor: pointer;
     display: inline-flex;
     font-size: var(--text-lg);
     padding: 0.25rem 0.5rem;
-    transition: background-color var(--transition-ease-in);
+    transition:
+      background-color var(--transition),
+      border-color var(--transition);
 
     @media (any-pointer: coarse) {
       justify-content: center;
@@ -90,14 +93,18 @@ const modes = [
     }
 
     &:focus-visible {
-      background-color: var(--toggle-bg-color);
-      outline: 0.1rem solid var(--link);
+      --_outline: var(--link-outline);
+
+      background-color: var(--link-container);
+      outline: 0.1rem solid var(--focus-ring);
       outline-offset: 0.1rem;
     }
 
     @media (hover: hover) {
       &:hover {
-        background-color: var(--toggle-bg-color);
+        --_outline: var(--link-outline);
+
+        background-color: var(--link-container);
       }
     }
   }
@@ -108,7 +115,8 @@ const modes = [
 
   .theme-toggle[data-current="auto"] [data-mode="auto"],
   .theme-toggle[data-current="light"] [data-mode="light"],
-  .theme-toggle[data-current="dark"] [data-mode="dark"] {
+  .theme-toggle[data-current="dark"] [data-mode="dark"],
+  .theme-toggle[data-current="neobrutalism"] [data-mode="neobrutalism"] {
     display: inline-flex;
   }
 </style>

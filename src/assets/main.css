@@ -9,9 +9,11 @@
   --font-serif:
     var(--font-e-serif), ui-serif, cambria, cochin, georgia, times,
     "Times New Roman", serif;
-  --font-sans-serif: sans-serif;
-  --font-main: var(--font-mono);
-  --font-paragraph: var(--font-serif);
+
+  /* Font roles: themes override these, never the fonts above */
+  --font-ui: var(--font-mono);
+  --font-heading: var(--font-serif);
+  --font-prose: var(--font-serif);
 
   /* Type scale: use these instead of ad hoc sizes */
   --text-xs: 0.7rem;
@@ -19,9 +21,9 @@
   --text-md: 1rem;
   --text-lg: 1.2rem;
   --text-xl: 1.5rem;
+  --text-h2: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
 
   /* Heading */
-  --h2-size: clamp(1.8rem, -1rem + 8.5vw, 2.5rem);
   --heading-font-weight: 600;
   --heading-margin-end: 1rem;
 
@@ -29,13 +31,13 @@
   --nav-gap: 0.5rem;
   --nav-offset: calc(var(--nav-height, 0) + var(--nav-gap));
 
-  /* Others */
-  --transition-ease-in: 0.2s ease-in;
+  /* Motion */
+  --transition: 0.2s ease-in;
 }
 
 html,
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-ui);
   line-height: 1.2;
 }
 
@@ -63,21 +65,21 @@ body {
 }
 
 a {
-  --link-border: transparent;
-  --link-color: var(--link);
+  --_underline: transparent;
+  --_color: var(--link);
 
-  border-bottom: 0.1rem solid var(--link-border);
-  color: var(--link-color);
+  border-bottom: 0.1rem solid var(--_underline);
+  color: var(--_color);
   padding: 0.25rem;
   text-decoration: none;
   transition:
-    border-color var(--transition-ease-in),
-    color var(--transition-ease-in);
+    border-color var(--transition),
+    color var(--transition);
 
   &:focus,
   &:focus-visible {
-    --link-color: var(--link-hover);
-    --link-border: var(--link-hover);
+    --_color: var(--link-hover);
+    --_underline: var(--link-hover);
   }
 
   &:focus-visible {
@@ -86,25 +88,17 @@ a {
 
   @media (hover: hover) {
     &:hover {
-      --link-color: var(--link-hover);
-      --link-border: var(--link-hover);
+      --_color: var(--link-hover);
+      --_underline: var(--link-hover);
     }
   }
 }
 
 .main-bg {
-  --line: hsl(from var(--surface-variant) h s l / var(--main-bg-per));
-
-  background-image:
-    linear-gradient(to right, var(--line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: var(--grid-image);
+  background-size: var(--grid-size);
   inset: 0;
-  mask-image: radial-gradient(
-    ellipse 60% 60% at 50% 50%,
-    var(--surface) 30%,
-    transparent 70%
-  );
+  mask-image: var(--grid-mask);
   position: fixed;
   z-index: -1;
 }
@@ -125,9 +119,9 @@ a {
 }
 
 .prose {
-  font-family: var(--font-paragraph);
+  font-family: var(--font-prose);
   line-height: 1.6;
-  max-width: 36rem;
+  max-width: var(--prose-max-width, 36rem);
 
   p {
     margin-block: 0 1rem;
@@ -150,7 +144,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-weight: var(--heading-font-weight);
   margin-block: var(--heading-margin-start, 0) var(--heading-margin-end);
 }
@@ -164,7 +158,7 @@ h1 {
 h2 {
   --heading-margin-end: 0.9rem;
 
-  font-size: var(--h2-size);
+  font-size: var(--text-h2);
 }
 
 h3 {

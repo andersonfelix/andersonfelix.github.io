@@ -62,25 +62,25 @@ const { items } = Astro.props;
     z-index: 100;
 
     &:focus-visible {
-      outline: 0.1rem solid var(--link);
+      outline: 0.1rem solid var(--focus-ring);
       transform: none;
     }
   }
 
   nav {
-    --bg-color: hsl(from var(--surface) h s calc(l - 0.5));
-    --link-bg-color: hsl(from var(--link) calc(h + 360) s l / 5%);
+    --_bg: hsl(from var(--surface) h s calc(l - 0.5));
 
-    background-color: var(--bg-color);
+    background-color: var(--_bg);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 50;
 
     &::after {
-      background-color: var(--bg-color);
+      background-color: var(--_bg);
       bottom: 0;
-      box-shadow: 0 0.25rem 0.25rem var(--bg-color);
+      box-shadow: var(--nav-shadow-offset, 0 0.25rem 0.25rem)
+        var(--nav-shadow, var(--_bg));
       content: "";
       height: 0.5rem;
       left: 0;
@@ -114,33 +114,43 @@ const { items } = Astro.props;
   }
 
   a {
+    --_outline: transparent;
+
     align-items: center;
-    border: 0;
-    border-radius: 0.3rem;
+    border: var(--link-outline-width) solid var(--_outline);
+    border-radius: var(--corner-small);
     column-gap: 0.3rem;
     display: inline-flex;
     font-size: var(--text-sm);
     font-weight: 700;
     padding-inline: 0.3rem;
-    transition: background-color var(--transition-ease-in);
+    transition:
+      background-color var(--transition),
+      border-color var(--transition);
 
     &.selected {
-      background-color: var(--link-bg-color);
+      --_outline: var(--link-outline);
+
+      background-color: var(--link-container);
     }
 
     &:focus,
     &:focus-visible {
-      background-color: var(--link-bg-color);
+      --_outline: var(--link-outline);
+
+      background-color: var(--link-container);
     }
 
     &:focus-visible {
-      outline: 0.1rem solid var(--link);
+      outline: 0.1rem solid var(--focus-ring);
       outline-offset: 0.1rem;
     }
 
     @media (hover: hover) {
       &:hover {
-        background-color: var(--link-bg-color);
+        --_outline: var(--link-outline);
+
+        background-color: var(--link-container);
       }
     }
 
